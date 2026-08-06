@@ -23,7 +23,7 @@
 #include "led.h"
 #include "switch.h"
 /*==================[macros and definitions]=================================*/
-#define CONFIG_BLINK_PERIOD 1000
+#define CONFIG_BLINK_PERIOD 500
 /*==================[internal data definition]===============================*/
 
 /*==================[internal functions declaration]=========================*/
@@ -42,8 +42,13 @@ void app_main(void){
     		case SWITCH_2:
     			LedToggle(LED_2);
     		break;
+			case SWITCH_1|SWITCH_2:
+				LedToggle(LED_3);
+			break;
+			default:
+				LedsOffAll();
+			break;
     	}
-	    LedToggle(LED_3);
 		vTaskDelay(CONFIG_BLINK_PERIOD / portTICK_PERIOD_MS);
 	}
 }
