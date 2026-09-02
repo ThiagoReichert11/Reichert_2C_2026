@@ -29,6 +29,14 @@
 /*==================[internal functions declaration]=========================*/
 
 /*==================[external functions definition]==========================*/
+
+
+
+
+
+
+/*Se modificó este archivo para realizar las tareas.*/
+
 void app_main(void){
 	uint8_t teclas;
 	LedsInit();

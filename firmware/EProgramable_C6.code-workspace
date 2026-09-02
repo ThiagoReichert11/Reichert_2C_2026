@@ -20,6 +20,18 @@
         },
         {
             "path": "./projects/x_template"
+        },
+        {
+            "path": "projects/proyecto1_act3"
+        },
+        {
+            "path": "projects/proyecto1_act4"
+        },
+        {
+            "path": "projects/proyecto1_act5"
+        },
+        {
+            "path": "projects/proyecto1_act6"
         }
     ],
     "settings": {
