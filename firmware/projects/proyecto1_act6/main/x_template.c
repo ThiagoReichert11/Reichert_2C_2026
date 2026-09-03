@@ -4,9 +4,9 @@
  *
  * Este programa permite descomponer un entero de 32 bits en sus dígitos individuales 
  * BCD y mostrarlos de forma multiplexada en hasta 3 dígitos de un display de 7 segmentos.
- * Incluye además validación de errores para prevenir desbordamientos o valores inválidos.
+ * 
  *
- * @author Albano Peñalva (albano.penalva@uner.edu.ar)
+ * @author Thiago Reichert
  *
  * @section hardConn Hardware Connection
  *
