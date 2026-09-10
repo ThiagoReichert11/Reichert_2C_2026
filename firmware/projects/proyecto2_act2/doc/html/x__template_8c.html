@@ -1,0 +1,390 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto2_Actividad2: Referencia del archivo C:/Repositorios/Reichert_2C_2026/firmware/projects/proyecto2_act2/main/x_template.c</title>
+<link rel="icon" href="icon.ico" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', init_search);
+</script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="fiuner.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">Proyecto2_Actividad2<span id="projectnumber">&#160;1.0</span>
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('x__template_8c.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Referencia del archivo x_template.c</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;freertos/FreeRTOS.h&quot;</code><br />
+<code>#include &quot;freertos/task.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="led_8h_source.html">led.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="switch_8h_source.html">switch.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="lcditse0803_8h_source.html">lcditse0803.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="hc__sr04_8h_source.html">hc_sr04.h</a>&quot;</code><br />
+</div>
+<p><a href="x__template_8c_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+defines</h2></td></tr>
+<tr class="memitem:a678fbfb4167b212bf2325f39c0a6c484" id="r_a678fbfb4167b212bf2325f39c0a6c484"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a678fbfb4167b212bf2325f39c0a6c484">CONFIG_PERIOD_MEDIR</a>&#160;&#160;&#160;1000</td></tr>
+<tr class="memdesc:a678fbfb4167b212bf2325f39c0a6c484"><td class="mdescLeft">&#160;</td><td class="mdescRight">Período de muestreo para el sensor ultrasónico HC-SR04 en milisegundos.  <br /></td></tr>
+<tr class="memitem:a03f0afe6330c84584584df6f263b8c3f" id="r_a03f0afe6330c84584584df6f263b8c3f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#a03f0afe6330c84584584df6f263b8c3f">CONFIG_PERIOD_MOSTRAR</a>&#160;&#160;&#160;100</td></tr>
+<tr class="memdesc:a03f0afe6330c84584584df6f263b8c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Período de refresco para la pantalla LCD y la escala de <a class="el" href="group___l_e_d.html#gab6831a7d06c0a2bc69f9b024f6445a80" title="LED driver for the ESP-EDU Board.">LEDs</a> en milisegundos.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Funciones</h2></td></tr>
+<tr class="memitem:ae7b2398b45b3a4e147bb773f6d7fd915" id="r_ae7b2398b45b3a4e147bb773f6d7fd915"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ae7b2398b45b3a4e147bb773f6d7fd915">Tecla1</a> (void *pvParameter)</td></tr>
+<tr class="memdesc:ae7b2398b45b3a4e147bb773f6d7fd915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de callback/ISR invocada por la interrupción de TEC1 (SWITCH_1).  <br /></td></tr>
+<tr class="memitem:aab4aa84a51d1ae0bc3198a14fd573653" id="r_aab4aa84a51d1ae0bc3198a14fd573653"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aab4aa84a51d1ae0bc3198a14fd573653">Tecla2</a> (void *pvParameter)</td></tr>
+<tr class="memdesc:aab4aa84a51d1ae0bc3198a14fd573653"><td class="mdescLeft">&#160;</td><td class="mdescRight">Función de callback/ISR invocada por la interrupción de TEC2 (SWITCH_2).  <br /></td></tr>
+<tr class="memitem:a630544a7f0a2cc40d8a7fefab7e2fe70" id="r_a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a> (void)</td></tr>
+<tr class="memdesc:a630544a7f0a2cc40d8a7fefab7e2fe70"><td class="mdescLeft">&#160;</td><td class="mdescRight">Punto de entrada principal de la aplicación ESP-IDF.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:afd0defcbbd1b24df966ca1072c06a276" id="r_afd0defcbbd1b24df966ca1072c06a276"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#afd0defcbbd1b24df966ca1072c06a276">activo</a> = false</td></tr>
+<tr class="memdesc:afd0defcbbd1b24df966ca1072c06a276"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado global del sistema (true: encendido/midiendo, false: apagado).  <br /></td></tr>
+<tr class="memitem:af0129e079b57e897edf00f22cc25f3d4" id="r_af0129e079b57e897edf00f22cc25f3d4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#af0129e079b57e897edf00f22cc25f3d4">hold</a> = false</td></tr>
+<tr class="memdesc:af0129e079b57e897edf00f22cc25f3d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Estado de retención de lectura en el display (true: congela LCD, false: actualiza LCD).  <br /></td></tr>
+<tr class="memitem:aec40b15ff3098bdb2425eb4dc9c11a18" id="r_aec40b15ff3098bdb2425eb4dc9c11a18"><td class="memItemLeft">uint16_t&#160;</td><td class="memItemRight"><a class="el" href="#aec40b15ff3098bdb2425eb4dc9c11a18">distancia</a> = 0</td></tr>
+<tr class="memdesc:aec40b15ff3098bdb2425eb4dc9c11a18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Almacena la última distancia medida por el sensor HC-SR04 expresada en centímetros.  <br /></td></tr>
+<tr class="memitem:a2b0cb40d7a31ce7e8b3f906fd55df312" id="r_a2b0cb40d7a31ce7e8b3f906fd55df312"><td class="memItemLeft">TaskHandle_t&#160;</td><td class="memItemRight"><a class="el" href="#a2b0cb40d7a31ce7e8b3f906fd55df312">medir_task_handle</a> = NULL</td></tr>
+<tr class="memdesc:a2b0cb40d7a31ce7e8b3f906fd55df312"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manejador de la tarea encargada del disparo y lectura del sensor ultrasónico.  <br /></td></tr>
+<tr class="memitem:a1316d5b1a3e4d9dee5085faf3b582e40" id="r_a1316d5b1a3e4d9dee5085faf3b582e40"><td class="memItemLeft">TaskHandle_t&#160;</td><td class="memItemRight"><a class="el" href="#a1316d5b1a3e4d9dee5085faf3b582e40">mostrar_task_handle</a> = NULL</td></tr>
+<tr class="memdesc:a1316d5b1a3e4d9dee5085faf3b582e40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Manejador de la tarea encargada de la interfaz gráfica y luminosa (LCD y <a class="el" href="group___l_e_d.html#gab6831a7d06c0a2bc69f9b024f6445a80" title="LED driver for the ESP-EDU Board.">LEDs</a>).  <br /></td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Documentación de «define»</h2>
+<a id="a678fbfb4167b212bf2325f39c0a6c484" name="a678fbfb4167b212bf2325f39c0a6c484"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a678fbfb4167b212bf2325f39c0a6c484">&#9670;&#160;</a></span>CONFIG_PERIOD_MEDIR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONFIG_PERIOD_MEDIR&#160;&#160;&#160;1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Período de muestreo para el sensor ultrasónico HC-SR04 en milisegundos. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00040">40</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+</div>
+</div>
+<a id="a03f0afe6330c84584584df6f263b8c3f" name="a03f0afe6330c84584584df6f263b8c3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03f0afe6330c84584584df6f263b8c3f">&#9670;&#160;</a></span>CONFIG_PERIOD_MOSTRAR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CONFIG_PERIOD_MOSTRAR&#160;&#160;&#160;100</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Período de refresco para la pantalla LCD y la escala de <a class="el" href="group___l_e_d.html#gab6831a7d06c0a2bc69f9b024f6445a80" title="LED driver for the ESP-EDU Board.">LEDs</a> en milisegundos. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00046">46</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Documentación de funciones</h2>
+<a id="a630544a7f0a2cc40d8a7fefab7e2fe70" name="a630544a7f0a2cc40d8a7fefab7e2fe70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a630544a7f0a2cc40d8a7fefab7e2fe70">&#9670;&#160;</a></span>app_main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void app_main </td>
+          <td>(</td>
+          <td class="paramtype">void</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Punto de entrada principal de la aplicación ESP-IDF. </p>
+<p>Inicializa los pulsadores, configura las interrupciones asociadas a TEC1 y TEC2, inicializa el sensor HC-SR04 e instancia las tareas concurrentes de medición y visualización. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00192">192</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="gpio__mcu_8h_source.html#l00054">GPIO_2</a>, <a class="el" href="gpio__mcu_8h_source.html#l00055">GPIO_3</a>, <a class="el" href="hc__sr04_8c_source.html#l00034">HcSr04Init()</a>, <a class="el" href="x__template_8c_source.html#l00071">medir_task_handle</a>, <a class="el" href="x__template_8c_source.html#l00077">mostrar_task_handle</a>, <a class="el" href="switch_8h_source.html#l00032">SWITCH_1</a>, <a class="el" href="switch_8h_source.html#l00033">SWITCH_2</a>, <a class="el" href="switch_8c_source.html#l00047">SwitchActivInt()</a>, <a class="el" href="switch_8c_source.html#l00029">SwitchesInit()</a>, <a class="el" href="x__template_8c_source.html#l00117">Tecla1()</a> y <a class="el" href="x__template_8c_source.html#l00128">Tecla2()</a>.</p>
+
+</div>
+</div>
+<a id="ae7b2398b45b3a4e147bb773f6d7fd915" name="ae7b2398b45b3a4e147bb773f6d7fd915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b2398b45b3a4e147bb773f6d7fd915">&#9670;&#160;</a></span>Tecla1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tecla1 </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función de callback/ISR invocada por la interrupción de TEC1 (SWITCH_1). </p>
+<p>Invierte el estado de la variable global 'activo' para pausar o reanudar la medición.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pvParameter</td><td>Puntero genérico a parámetros de la interrupción (no utilizado). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00117">117</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="x__template_8c_source.html#l00053">activo</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00192">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="aab4aa84a51d1ae0bc3198a14fd573653" name="aab4aa84a51d1ae0bc3198a14fd573653"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab4aa84a51d1ae0bc3198a14fd573653">&#9670;&#160;</a></span>Tecla2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Tecla2 </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameter</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Función de callback/ISR invocada por la interrupción de TEC2 (SWITCH_2). </p>
+<p>Invierte el estado de la variable global 'hold' para congelar o descongelar la pantalla LCD.</p>
+<dl class="params"><dt>Parámetros</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pvParameter</td><td>Puntero genérico a parámetros de la interrupción (no utilizado). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00128">128</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Hace referencia a <a class="el" href="x__template_8c_source.html#l00059">hold</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00192">app_main()</a>.</p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Documentación de variables</h2>
+<a id="afd0defcbbd1b24df966ca1072c06a276" name="afd0defcbbd1b24df966ca1072c06a276"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd0defcbbd1b24df966ca1072c06a276">&#9670;&#160;</a></span>activo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool activo = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Estado global del sistema (true: encendido/midiendo, false: apagado). </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00053">53</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00117">Tecla1()</a>.</p>
+
+</div>
+</div>
+<a id="aec40b15ff3098bdb2425eb4dc9c11a18" name="aec40b15ff3098bdb2425eb4dc9c11a18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec40b15ff3098bdb2425eb4dc9c11a18">&#9670;&#160;</a></span>distancia</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t distancia = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Almacena la última distancia medida por el sensor HC-SR04 expresada en centímetros. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00065">65</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+</div>
+</div>
+<a id="af0129e079b57e897edf00f22cc25f3d4" name="af0129e079b57e897edf00f22cc25f3d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0129e079b57e897edf00f22cc25f3d4">&#9670;&#160;</a></span>hold</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool hold = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Estado de retención de lectura en el display (true: congela LCD, false: actualiza LCD). </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00059">59</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00128">Tecla2()</a>.</p>
+
+</div>
+</div>
+<a id="a2b0cb40d7a31ce7e8b3f906fd55df312" name="a2b0cb40d7a31ce7e8b3f906fd55df312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b0cb40d7a31ce7e8b3f906fd55df312">&#9670;&#160;</a></span>medir_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t medir_task_handle = NULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Manejador de la tarea encargada del disparo y lectura del sensor ultrasónico. </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00071">71</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00192">app_main()</a>.</p>
+
+</div>
+</div>
+<a id="a1316d5b1a3e4d9dee5085faf3b582e40" name="a1316d5b1a3e4d9dee5085faf3b582e40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1316d5b1a3e4d9dee5085faf3b582e40">&#9670;&#160;</a></span>mostrar_task_handle</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TaskHandle_t mostrar_task_handle = NULL</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Manejador de la tarea encargada de la interfaz gráfica y luminosa (LCD y <a class="el" href="group___l_e_d.html#gab6831a7d06c0a2bc69f9b024f6445a80" title="LED driver for the ESP-EDU Board.">LEDs</a>). </p>
+
+<p class="definition">Definición en la línea <a class="el" href="x__template_8c_source.html#l00077">77</a> del archivo <a class="el" href="x__template_8c_source.html">x_template.c</a>.</p>
+
+<p class="reference">Referenciado por <a class="el" href="x__template_8c_source.html#l00192">app_main()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<div id="page-nav" class="page-nav-panel">
+<div id="page-nav-resize-handle"></div>
+<div id="page-nav-tree">
+<div id="page-nav-contents">
+</div><!-- page-nav-contents -->
+</div><!-- page-nav-tree -->
+</div><!-- page-nav -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d9edf6c004b4a7ff14fe9ae7a92214ee.html">firmware</a></li><li class="navelem"><a href="dir_429d80758da54da73083af4edd40d0b3.html">projects</a></li><li class="navelem"><a href="dir_8c9ee3dca25996c170b6f24dfbd3188b.html">proyecto2_act2</a></li><li class="navelem"><a href="dir_e9da484d86480aba26d25e62c867262e.html">main</a></li><li class="navelem"><a href="x__template_8c.html">x_template.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>
