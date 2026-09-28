@@ -1,5 +1,5 @@
 /**
- * @file proyecto2_act1.c
+ * @file proyecto2_act2.c
  * @brief Sistema de medición de distancia con HC-SR04, pantalla LCD y escala de LEDs sobre FreeRTOS mediante interrupciones.
  *
  * @mainpage Control de Distancia
