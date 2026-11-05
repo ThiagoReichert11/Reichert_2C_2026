@@ -17,12 +17,13 @@ SERIAL_PORT = 'COM12'  # <-- Modifica según tu puerto (Ej. COM4, /dev/ttyUSB0)
 BAUD_RATE = 115200
 DB_NAME = 'mediciones_reaccion.db'
 
-# Mapeo de comandos de color
+# Mapeo de comandos de color (Incluye Modo 5: Go/No-Go)
 COLOR_MAP = {
     '1': 'Rojo',
     '2': 'Amarillo',
     '3': 'Verde',
-    '4': 'Aleatorio'
+    '4': 'Aleatorio',
+    '5': 'Go/No-Go'
 }
 
 class MonitorUARTApp:
@@ -37,6 +38,8 @@ class MonitorUARTApp:
         # Variables de estado del examen
         self.exam_active = False
         self.exam_measurements = []
+        self.exam_trial_count = 0
+        self.exam_errors = 0
         self.current_color_code = '1'
         self.exam_dict = {}
 
@@ -88,10 +91,10 @@ class MonitorUARTApp:
         self.entry_nombre.insert(0, "Participante 1")
         self.entry_nombre.grid(row=0, column=1, padx=5, pady=5, sticky="w")
 
-        tk.Label(top_frame, text="Color Estímulo:", font=("Helvetica", 11)).grid(row=0, column=2, padx=5, pady=5, sticky="w")
+        tk.Label(top_frame, text="Color / Modo:", font=("Helvetica", 11)).grid(row=0, column=2, padx=5, pady=5, sticky="w")
         self.color_var = tk.StringVar(value='1')
-        color_combo = ttk.Combobox(top_frame, textvariable=self.color_var, state="readonly", width=13, font=("Helvetica", 11))
-        color_combo['values'] = ('1 - Rojo', '2 - Amarillo', '3 - Verde', '4 - Aleatorio')
+        color_combo = ttk.Combobox(top_frame, textvariable=self.color_var, state="readonly", width=15, font=("Helvetica", 11))
+        color_combo['values'] = ('1 - Rojo', '2 - Amarillo', '3 - Verde', '4 - Aleatorio', '5 - Go/No-Go')
         color_combo.current(0)
         color_combo.grid(row=0, column=3, padx=5, pady=5, sticky="w")
         color_combo.bind("<<ComboboxSelected>>", self.on_color_change)
@@ -126,14 +129,14 @@ class MonitorUARTApp:
         self.tree = ttk.Treeview(db_frame, columns=columns, show="headings", height=12)
         self.tree.heading("id", text="ID")
         self.tree.heading("nombre", text="Nombre")
-        self.tree.heading("color", text="Color")
+        self.tree.heading("color", text="Color / Modo")
         self.tree.heading("promedio", text="Promedio (ms)")
-        self.tree.heading("mediciones", text="10 Mediciones (ms)")
+        self.tree.heading("mediciones", text="Registros (ms)")
         self.tree.heading("fecha", text="Fecha / Hora")
 
         self.tree.column("id", width=35, anchor=tk.CENTER)
         self.tree.column("nombre", width=100)
-        self.tree.column("color", width=80, anchor=tk.CENTER)
+        self.tree.column("color", width=90, anchor=tk.CENTER)
         self.tree.column("promedio", width=110, anchor=tk.CENTER)
         self.tree.column("mediciones", width=200)
         self.tree.column("fecha", width=130, anchor=tk.CENTER)
@@ -148,7 +151,6 @@ class MonitorUARTApp:
 
     # --- PESTAÑA 2: ANÁLISIS ESTADÍSTICO Y GRÁFICAS ---
     def build_stats_tab(self):
-        # Panel Superior: Selector de Muestra
         selector_frame = tk.LabelFrame(self.tab_stats, text=" Selección de Muestra ", 
                                        font=("Helvetica", 11, "bold"), padx=10, pady=10)
         selector_frame.pack(padx=10, pady=5, fill=tk.X)
@@ -161,7 +163,6 @@ class MonitorUARTApp:
 
         tk.Button(selector_frame, text="🔄 Actualizar", font=("Helvetica", 10, "bold"), command=self.load_db_records).pack(side=tk.LEFT, padx=5)
 
-        # Panel Métricas Estadísticas (Organización en Cuadrícula 3x2)
         metrics_frame = tk.LabelFrame(self.tab_stats, text=" Indicadores Estadísticos ", 
                                       font=("Helvetica", 11, "bold"), padx=15, pady=10)
         metrics_frame.pack(padx=10, pady=5, fill=tk.X)
@@ -185,7 +186,6 @@ class MonitorUARTApp:
         self.lbl_stat_fatigue = tk.Label(metrics_frame, text="Índice de Fatiga / Acondicionamiento: --", font=("Helvetica", 12, "bold"), fg="#7B1FA2")
         self.lbl_stat_fatigue.grid(row=1, column=1, columnspan=2, sticky="w", pady=4)
 
-        # Panel para el Gráfico Matplotlib
         chart_frame = tk.LabelFrame(self.tab_stats, text=" Gráfico de Muestra con Línea de Tendencia ", 
                                     font=("Helvetica", 11, "bold"), padx=5, pady=5)
         chart_frame.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
@@ -243,12 +243,20 @@ class MonitorUARTApp:
                 self.tree.insert("", tk.END, values=record)
                 
                 record_id, nombre, color, prom, meds_str, fecha = record
-                label_text = f"ID #{record_id} | {nombre} | Color: {color} | Promedio: {prom} ms | Fecha: {fecha}"
+                label_text = f"ID #{record_id} | {nombre} | Modo: {color} | Promedio: {prom} ms | Fecha: {fecha}"
                 combo_values.append(label_text)
+                
+                # Filtrar valores válidos para estadísticas (excluir errores de 3000 ms si se desea o procesar limpios)
+                meds_parsed = []
+                for x in meds_str.split(","):
+                    val = x.strip()
+                    if val.isdigit():
+                        meds_parsed.append(int(val))
+
                 self.exam_dict[label_text] = {
                     "nombre": nombre,
                     "color": color,
-                    "mediciones": [int(x.strip()) for x in meds_str.split(",")],
+                    "mediciones": meds_parsed,
                     "fecha": fecha
                 }
 
@@ -267,6 +275,17 @@ class MonitorUARTApp:
         meds = data["mediciones"]
         nombre = data["nombre"]
         color = data["color"]
+
+        if not meds:
+            self.lbl_stat_prom.config(text="Promedio: N/A")
+            self.lbl_stat_media.config(text="Media: N/A")
+            self.lbl_stat_median.config(text="Mediana: N/A")
+            self.lbl_stat_stdev.config(text="Desviación Estándar: N/A")
+            self.lbl_stat_fatigue.config(text="Índice de Fatiga / Acondicionamiento: N/A", fg="gray")
+            self.ax.clear()
+            self.ax.set_title(f"Sin datos gráficos para {nombre}", fontsize=12)
+            self.canvas.draw()
+            return
 
         # 1. Estadística Descriptiva Básica
         mean_val = statistics.mean(meds)
@@ -294,7 +313,7 @@ class MonitorUARTApp:
             fatigue_str = "Insuficientes muestras"
             fatigue_color = "gray"
 
-        # 3. Actualizar Etiquetas en Interfaz con todos los indicadores solicitados
+        # 3. Actualizar Etiquetas en Interfaz
         self.lbl_stat_prom.config(text=f"Promedio: {mean_val:.2f} ms")
         self.lbl_stat_media.config(text=f"Media: {mean_val:.2f} ms")
         self.lbl_stat_median.config(text=f"Mediana: {median_val:.2f} ms")
@@ -315,8 +334,8 @@ class MonitorUARTApp:
             self.ax.plot(x_indices, trend_line, linestyle=':', linewidth=2.2, color='#7B1FA2', 
                          label=f'Tendencia (m = {m:+.1f} ms/ensayo)')
 
-        self.ax.set_title(f"Evaluación de {nombre} (Estímulo: {color})", fontsize=13, fontweight='bold')
-        self.ax.set_xlabel("Número de Ensayo", fontsize=11, fontweight='bold')
+        self.ax.set_title(f"Evaluación de {nombre} (Modo: {color})", fontsize=13, fontweight='bold')
+        self.ax.set_xlabel("Número de Ensayo / Muestra Valida", fontsize=11, fontweight='bold')
         self.ax.set_ylabel("Tiempo de Reacción (ms)", fontsize=11, fontweight='bold')
         self.ax.set_xticks(x_indices)
         self.ax.tick_params(axis='both', which='major', labelsize=10)
@@ -341,7 +360,7 @@ class MonitorUARTApp:
         
         tree_lead.heading("pos", text="Posición")
         tree_lead.heading("nombre", text="Participante")
-        tree_lead.heading("color", text="Color")
+        tree_lead.heading("color", text="Modo")
         tree_lead.heading("promedio", text="Promedio (ms)")
         tree_lead.heading("fecha", text="Fecha")
 
@@ -384,13 +403,15 @@ class MonitorUARTApp:
 
         self.exam_active = True
         self.exam_measurements = []
+        self.exam_trial_count = 0
+        self.exam_errors = 0
         
         self.send_command(self.current_color_code)
         self.send_command('a')
 
         self.btn_exam.config(text="⏹ CANCELAR EXAMEN", bg="#f44336")
         self.lbl_status.config(
-            text=f"Modo Examen ACTIVO | Participante: {nombre} | Ensayo: 0/10", 
+            text=f"Modo Examen ACTIVO | Participante: {nombre} | Ensayo: 0/10 | Errores: 0", 
             fg="blue"
         )
         self.append_text(f"\n>>> INICIANDO MODO EXAMEN PARA: {nombre} <<<\n")
@@ -399,6 +420,8 @@ class MonitorUARTApp:
         self.send_command('a')
         self.exam_active = False
         self.exam_measurements = []
+        self.exam_trial_count = 0
+        self.exam_errors = 0
 
         self.btn_exam.config(text="▶ INICIAR EXAMEN (10 Ensayos)", bg="#4CAF50")
         self.lbl_status.config(text="Estado: Examen Cancelado | Dispositivo Apagado", fg="red")
@@ -408,7 +431,11 @@ class MonitorUARTApp:
         nombre = self.entry_nombre.get().strip() or "Anónimo"
         color_nombre = COLOR_MAP.get(self.current_color_code, 'Desconocido')
         
-        promedio = round(sum(self.exam_measurements) / len(self.exam_measurements), 2)
+        # Calcular promedio de los tiempos válidos capturados
+        if self.exam_measurements:
+            promedio = round(sum(self.exam_measurements) / len(self.exam_measurements), 2)
+        else:
+            promedio = 0.0
 
         self.send_command('a')
         self.save_exam_record(nombre, color_nombre, promedio, self.exam_measurements)
@@ -416,17 +443,18 @@ class MonitorUARTApp:
         self.exam_active = False
         self.btn_exam.config(text="▶ INICIAR EXAMEN (10 Ensayos)", bg="#4CAF50")
         self.lbl_status.config(
-            text=f"Examen Finalizado | Promedio: {promedio} ms | Dispositivo Apagado", 
+            text=f"Examen Finalizado | Promedio: {promedio} ms | Errores: {self.exam_errors} | Dispositivo Apagado", 
             fg="green"
         )
-        self.append_text(f"\n>>> EXAMEN FINALIZADO. PROMEDIO: {promedio} ms. APAGANDO DISPOSITIVO... <<<\n")
+        self.append_text(f"\n>>> EXAMEN FINALIZADO. PROMEDIO: {promedio} ms. ERRORES: {self.exam_errors}. APAGANDO... <<<\n")
 
         messagebox.showinfo(
             "Examen Completado", 
             f"¡Examen finalizado con éxito!\n\n"
             f"Participante: {nombre}\n"
-            f"Color: {color_nombre}\n"
-            f"Promedio: {promedio} ms\n\n"
+            f"Modo: {color_nombre}\n"
+            f"Promedio: {promedio} ms\n"
+            f"Falsas Alarmas / Errores: {self.exam_errors}\n\n"
             f"El dispositivo se ha apagado automáticamente."
         )
 
@@ -462,16 +490,38 @@ class MonitorUARTApp:
     def process_line(self, linea):
         self.append_text(linea)
 
-        match = re.search(r"Tiempo de reacción:\s*(\d+)\s*ms", linea)
-        if match:
-            tiempo_ms = int(match.group(1))
+        # Analizar todas las respuestas emitidas por el firmware (Modos 1 a 5)
+        match_acierto = re.search(r"Tiempo de reacción:\s*(\d+)\s*ms", linea)
+        match_error_red = re.search(r"¡ERROR!\s*Falsa alarma", linea)
+        match_correct_red = re.search(r"¡CORRECTO!\s*Inhibición lograda", linea)
+        match_omision_green = re.search(r"Tiempo agotado\.\s*Omisión", linea)
 
-            if self.exam_active:
+        if self.exam_active:
+            trial_event = False
+
+            if match_acierto:
+                tiempo_ms = int(match_acierto.group(1))
                 self.exam_measurements.append(tiempo_ms)
-                count = len(self.exam_measurements)
+                trial_event = True
+            elif match_error_red:
+                self.exam_errors += 1
+                # Se registra una penalización de 3000 ms por falsa alarma ante el rojo
+                self.exam_measurements.append(3000)
+                trial_event = True
+            elif match_correct_red:
+                # Inhibición correcta en rojo: Se completa el ensayo sin sumar tiempo de reacción
+                trial_event = True
+            elif match_omision_green:
+                self.exam_errors += 1
+                self.exam_measurements.append(3000)
+                trial_event = True
+
+            if trial_event:
+                self.exam_trial_count += 1
+                count = self.exam_trial_count
                 
                 self.lbl_status.config(
-                    text=f"Modo Examen ACTIVO | Ensayo: {count}/10 | Último: {tiempo_ms} ms", 
+                    text=f"Modo Examen ACTIVO | Ensayo: {count}/10 | Errores: {self.exam_errors}", 
                     fg="blue"
                 )
 
