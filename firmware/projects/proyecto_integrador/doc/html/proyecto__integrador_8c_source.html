@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.17.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Proyecto Integrador: Archivo de código fuente C:/Repositorios/Reichert_2C_2026/firmware/projects/proyecto_integrador/main/proyecto_integrador.c</title>
+<link rel="icon" href="icon.ico" type="image/x-icon" />
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="codefolding.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', init_search);
+</script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+const theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'default';
+mermaid.initialize({ startOnLoad: true, theme: theme });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectlogo"><img alt="Logo" src="fiuner.png"/></td>
+  <td id="projectalign">
+   <div id="projectname">Proyecto Integrador<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Medidor de tiempo de reacción.</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.17.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', codefold.init);
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded',() => { initNavTree('proyecto__integrador_8c_source.html','',''); });
+</script>
+<div id="container">
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Cargando...</div>
+<div class="SRStatus" id="Searching">Buscando...</div>
+<div class="SRStatus" id="NoMatches">Nada coincide</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">proyecto_integrador.c</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="proyecto__integrador_8c.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">/*==================[inclusions]=============================================*/</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;freertos/FreeRTOS.h&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &quot;freertos/task.h&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;<a class="code" href="neopixel__stripe_8h.html">neopixel_stripe.h</a>&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;<a class="code" href="switch_8h.html">switch.h</a>&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;<a class="code" href="timer__mcu_8h.html">timer_mcu.h</a>&quot;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;<a class="code" href="uart__mcu_8h.html">uart_mcu.h</a>&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;<a class="code" href="gpio__mcu_8h.html">gpio_mcu.h</a>&quot;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">/*==================[macros and definitions]=================================*/</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a4c4ae9a4146ce8d6a5debc90300d9abd">   41</a></span><span class="preprocessor">#define NUM_LEDS             12</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a843b341668408e5656cf19cf3389bb5a">   44</a></span><span class="preprocessor">#define LED_GPIO             GPIO_9</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#aa325fca333ac804ca4de668db6408529">   47</a></span><span class="preprocessor">#define EXTERNAL_BUTTON_GPIO GPIO_0</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a4d6c26471b0be27abfef61b166b5ed86">   50</a></span><span class="preprocessor">#define MIN_OFF_US           1000000</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#ae2657ec9a39c13597b22643980cf5f40">   53</a></span><span class="preprocessor">#define MAX_OFF_US           10000000</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a53bb6ce0dbc843daa4ad914d78713ac2">   56</a></span><span class="preprocessor">#define TIMEOUT_MS           3000</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span></div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="};">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1d">   61</a></span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da3941c58f6871b3fac36222c1970a8569">   62</a></span>    <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da3941c58f6871b3fac36222c1970a8569">MODE_RED</a> = 1,   </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1daf567bc541dd4a3f8060b85a0999bb064">   63</a></span>    <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1daf567bc541dd4a3f8060b85a0999bb064">MODE_YELLOW</a>,    </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1dab822c6222230ac2012fbae74935be22a">   64</a></span>    <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1dab822c6222230ac2012fbae74935be22a">MODE_GREEN</a>,     </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da92f01f9a4b1ad0f619691ba5c7b8e88f">   65</a></span>    <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da92f01f9a4b1ad0f619691ba5c7b8e88f">MODE_RANDOM</a>,    </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da23927f39d05f8e87c1adb00c1c516b28">   66</a></span>    <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da23927f39d05f8e87c1adb00c1c516b28">MODE_GONOGO</a>     </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>} <a class="code hl_enumeration" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1d">color_mode_t</a>;</div>
+</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">/*==================[internal data definition]===============================*/</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">static</span> <a class="code hl_typedef" href="group___neo_pixel___stripe.html#ga46c58082e9d85e6503e36f0e2306bb39">neopixel_color_t</a> led_colors[<a class="code hl_define" href="proyecto__integrador_8c.html#a4c4ae9a4146ce8d6a5debc90300d9abd">NUM_LEDS</a>];</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">static</span> TaskHandle_t control_task_handle = NULL;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keyword">static</span> TaskHandle_t uart_task_handle = NULL;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keywordtype">bool</span> activo = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">static</span> <span class="keyword">volatile</span> <a class="code hl_enumeration" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1d">color_mode_t</a> current_mode = <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da3941c58f6871b3fac36222c1970a8569">MODE_RED</a>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keywordtype">bool</span> reaction_in_progress = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keyword">static</span> <span class="keyword">volatile</span> int32_t final_reaction_time = 0;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">/*==================[auxiliary functions]====================================*/</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">static</span> <a class="code hl_typedef" href="group___neo_pixel___stripe.html#ga46c58082e9d85e6503e36f0e2306bb39">neopixel_color_t</a> GetLedColor(<a class="code hl_enumeration" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1d">color_mode_t</a> mode) {</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">if</span> (mode == <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da92f01f9a4b1ad0f619691ba5c7b8e88f">MODE_RANDOM</a>) mode = (rand() % 3) + 1;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">switch</span> (mode) {</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da3941c58f6871b3fac36222c1970a8569">MODE_RED</a>:    <span class="keywordflow">return</span> <a class="code hl_function" href="group___neo_pixel___stripe.html#gaf687598b356c6dab43afa17df8014a22">NeoPixelRgb2Color</a>(255, 0, 0);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1daf567bc541dd4a3f8060b85a0999bb064">MODE_YELLOW</a>: <span class="keywordflow">return</span> <a class="code hl_function" href="group___neo_pixel___stripe.html#gaf687598b356c6dab43afa17df8014a22">NeoPixelRgb2Color</a>(255, 150, 0);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1dab822c6222230ac2012fbae74935be22a">MODE_GREEN</a>:  <span class="keywordflow">return</span> <a class="code hl_function" href="group___neo_pixel___stripe.html#gaf687598b356c6dab43afa17df8014a22">NeoPixelRgb2Color</a>(0, 255, 0);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keywordflow">default</span>:          <span class="keywordflow">return</span> <a class="code hl_function" href="group___neo_pixel___stripe.html#gaf687598b356c6dab43afa17df8014a22">NeoPixelRgb2Color</a>(255, 0, 0);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">/*==================[ISRs &amp; Callbacks]=======================================*/</span></div>
+<div class="foldopen" id="foldopen00117" data-start="{" data-end="}">
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#ad604b3c6f3dca4732597fc92b3fb9a07">  117</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="proyecto__integrador_8c.html#ad604b3c6f3dca4732597fc92b3fb9a07">TimerACallback</a>(<span class="keywordtype">void</span> *p) {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    <span class="keywordflow">if</span> (control_task_handle != NULL) {</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        vTaskNotifyGiveFromISR(control_task_handle, NULL);</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    }</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>}</div>
+</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="keyword">static</span> <span class="keywordtype">void</span> RecordReactionISR(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keywordflow">if</span> (activo &amp;&amp; reaction_in_progress) {</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        uint32_t elapsed_us = <a class="code hl_function" href="group___timer.html#ga1e39dd9df84ea59700f20ec1d92c6291">TimerRead</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a7537925211db58591cb5eeb7ebc7f44f">TIMER_B</a>);</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>        <a class="code hl_function" href="group___timer.html#ga0860e7ffff656386879c7dcd600d0629">TimerStop</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a7537925211db58591cb5eeb7ebc7f44f">TIMER_B</a>);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        final_reaction_time = (int32_t)(elapsed_us / 1000);</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>        reaction_in_progress = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>        BaseType_t xHigherPriorityTaskWoken = pdFALSE;</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>        vTaskNotifyGiveFromISR(control_task_handle, &amp;xHigherPriorityTaskWoken);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>        <span class="keywordflow">if</span> (xHigherPriorityTaskWoken) portYIELD_FROM_ISR();</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>}</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span></div>
+<div class="foldopen" id="foldopen00149" data-start="{" data-end="}">
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#af9405586451658575c5c0779e2e20f0b">  149</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="proyecto__integrador_8c.html#af9405586451658575c5c0779e2e20f0b">ButtonReactionISR</a>(<span class="keywordtype">void</span> *p) {</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    RecordReactionISR();</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>}</div>
+</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span></div>
+<div class="foldopen" id="foldopen00160" data-start="{" data-end="}">
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#adaccf37e70bfb1a3179dbff0c5372c82">  160</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="proyecto__integrador_8c.html#adaccf37e70bfb1a3179dbff0c5372c82">Switch2Callback</a>(<span class="keywordtype">void</span> *p) {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    activo = !activo;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">if</span> (control_task_handle != NULL) {</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>        vTaskNotifyGiveFromISR(control_task_handle, NULL);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>}</div>
+</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span></div>
+<div class="foldopen" id="foldopen00175" data-start="{" data-end="}">
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a3b1cf6d12843e5369fbf2b58bb677f35">  175</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="proyecto__integrador_8c.html#a3b1cf6d12843e5369fbf2b58bb677f35">UartReceiveISR</a>(<span class="keywordtype">void</span> *p) {</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    uint8_t c;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <a class="code hl_function" href="group___u_a_r_t.html#ga37f1b16880c3ca70ed2e543566d555d2">UartReadByte</a>(<a class="code hl_enumvalue" href="group___u_a_r_t.html#gga6e1a445bae87c4cfd26710dbd4657b77af81669fbb473eedf3d1789fcf08d9056">UART_PC</a>, &amp;c);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordflow">if</span> (uart_task_handle != NULL) {</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>        BaseType_t xHigherPriorityTaskWoken = pdFALSE;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>        xTaskNotifyFromISR(uart_task_handle, (uint32_t)c, eSetValueWithOverwrite, &amp;xHigherPriorityTaskWoken);</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>        <span class="keywordflow">if</span> (xHigherPriorityTaskWoken) portYIELD_FROM_ISR();</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    }</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>}</div>
+</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="comment">/*==================[FreeRTOS Tasks]==========================================*/</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="keyword">static</span> <span class="keywordtype">void</span> UartTask(<span class="keywordtype">void</span> *pvParameter) {</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    uint32_t cmd;</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">if</span> (xTaskNotifyWait(0, 0xFFFFFFFF, &amp;cmd, portMAX_DELAY) == pdTRUE) {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>            <span class="keywordflow">if</span> (cmd == <span class="charliteral">&#39;a&#39;</span> || cmd == <span class="charliteral">&#39;A&#39;</span>) {</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>                activo = !activo;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>                xTaskNotifyGive(control_task_handle);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cmd == <span class="charliteral">&#39;1&#39;</span>) {</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>                current_mode = <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da3941c58f6871b3fac36222c1970a8569">MODE_RED</a>;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>                printf(<span class="stringliteral">&quot;\n[MODO] Color fijo: ROJO\r\n&quot;</span>);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cmd == <span class="charliteral">&#39;2&#39;</span>) {</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>                current_mode = <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1daf567bc541dd4a3f8060b85a0999bb064">MODE_YELLOW</a>;</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                printf(<span class="stringliteral">&quot;\n[MODO] Color fijo: AMARILLO\r\n&quot;</span>);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cmd == <span class="charliteral">&#39;3&#39;</span>) {</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                current_mode = <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1dab822c6222230ac2012fbae74935be22a">MODE_GREEN</a>;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>                printf(<span class="stringliteral">&quot;\n[MODO] Color fijo: VERDE\r\n&quot;</span>);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cmd == <span class="charliteral">&#39;4&#39;</span>) {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>                current_mode = <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da92f01f9a4b1ad0f619691ba5c7b8e88f">MODE_RANDOM</a>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>                printf(<span class="stringliteral">&quot;\n[MODO] Color: ALEATORIO\r\n&quot;</span>);</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cmd == <span class="charliteral">&#39;5&#39;</span>) {</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>                current_mode = <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da23927f39d05f8e87c1adb00c1c516b28">MODE_GONOGO</a>;</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>                printf(<span class="stringliteral">&quot;\n[MODO] Go/No-Go (Verde: Presionar | Rojo: Ignorar)\r\n&quot;</span>);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>            }</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>        }</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    }</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>}</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span><span class="keyword">static</span> <span class="keywordtype">void</span> ControlTask(<span class="keywordtype">void</span> *pvParameter) {</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">bool</span> last_activo = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    printf(<span class="stringliteral">&quot;=== ENTRENADOR MULTITAREA FREERTOS ===\r\n&quot;</span>);</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    <span class="keywordflow">while</span> (<span class="keyword">true</span>) {</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>        <span class="keywordflow">if</span> (activo) {</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>            <span class="keywordflow">if</span> (!last_activo) {</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>                printf(<span class="stringliteral">&quot;\n--- DISPOSITIVO ENCENDIDO ---\r\n&quot;</span>);</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>                last_activo = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>            }</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>            <a class="code hl_function" href="group___neo_pixel___stripe.html#ga7eda8ecf6370a5af575af2ca85eafa6d">NeoPixelAllOff</a>();</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>            uint32_t delay_us = <a class="code hl_define" href="proyecto__integrador_8c.html#a4d6c26471b0be27abfef61b166b5ed86">MIN_OFF_US</a> + (rand() % (<a class="code hl_define" href="proyecto__integrador_8c.html#ae2657ec9a39c13597b22643980cf5f40">MAX_OFF_US</a> - <a class="code hl_define" href="proyecto__integrador_8c.html#a4d6c26471b0be27abfef61b166b5ed86">MIN_OFF_US</a> + 1));</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>            <a class="code hl_function" href="group___timer.html#ga0860e7ffff656386879c7dcd600d0629">TimerStop</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a179b1231f027eba52fa4ef94ec174598">TIMER_A</a>);</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>            <a class="code hl_function" href="group___timer.html#ga123ccb39ca948b099917fc7a8d73fba4">TimerUpdatePeriod</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a179b1231f027eba52fa4ef94ec174598">TIMER_A</a>, delay_us);</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>            <a class="code hl_function" href="group___timer.html#ga80ed309959e5a179f5676ed4af547fa1">TimerReset</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a179b1231f027eba52fa4ef94ec174598">TIMER_A</a>);</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>            <a class="code hl_function" href="group___timer.html#ga0b1779c5b8f91cc83c8bfd127071ea2f">TimerStart</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a179b1231f027eba52fa4ef94ec174598">TIMER_A</a>);</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>            printf(<span class="stringliteral">&quot;Esperando estímulo...\r\n&quot;</span>);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            ulTaskNotifyTake(pdTRUE, portMAX_DELAY);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>            <a class="code hl_function" href="group___timer.html#ga0860e7ffff656386879c7dcd600d0629">TimerStop</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a179b1231f027eba52fa4ef94ec174598">TIMER_A</a>);</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            <span class="keywordflow">if</span> (!activo) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>            <span class="keywordtype">bool</span> is_red_gonogo = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>            <a class="code hl_typedef" href="group___neo_pixel___stripe.html#ga46c58082e9d85e6503e36f0e2306bb39">neopixel_color_t</a> color;</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>            <span class="keywordflow">if</span> (current_mode == <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da23927f39d05f8e87c1adb00c1c516b28">MODE_GONOGO</a>) {</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>                <span class="keywordflow">if</span> (rand() % 2 == 1) {</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>                    is_red_gonogo = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>                    color = <a class="code hl_function" href="group___neo_pixel___stripe.html#gaf687598b356c6dab43afa17df8014a22">NeoPixelRgb2Color</a>(255, 0, 0);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                    is_red_gonogo = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>                    color = <a class="code hl_function" href="group___neo_pixel___stripe.html#gaf687598b356c6dab43afa17df8014a22">NeoPixelRgb2Color</a>(0, 255, 0);</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>                }</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>                color = GetLedColor(current_mode);</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>            }</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>            <a class="code hl_function" href="group___neo_pixel___stripe.html#ga00aedd9bd24d607244a314348180bdb8">NeoPixelAllColor</a>(color);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>            <a class="code hl_function" href="group___timer.html#ga0860e7ffff656386879c7dcd600d0629">TimerStop</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a7537925211db58591cb5eeb7ebc7f44f">TIMER_B</a>);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>            <a class="code hl_function" href="group___timer.html#ga80ed309959e5a179f5676ed4af547fa1">TimerReset</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a7537925211db58591cb5eeb7ebc7f44f">TIMER_B</a>);</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>            <a class="code hl_function" href="group___timer.html#ga0b1779c5b8f91cc83c8bfd127071ea2f">TimerStart</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a7537925211db58591cb5eeb7ebc7f44f">TIMER_B</a>);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>            reaction_in_progress = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>            uint32_t pressed = ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(<a class="code hl_define" href="proyecto__integrador_8c.html#a53bb6ce0dbc843daa4ad914d78713ac2">TIMEOUT_MS</a>));</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>            <a class="code hl_function" href="group___neo_pixel___stripe.html#ga7eda8ecf6370a5af575af2ca85eafa6d">NeoPixelAllOff</a>();</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>            <span class="keywordflow">if</span> (!activo) <span class="keywordflow">continue</span>;</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>            <span class="keywordflow">if</span> (current_mode == <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da23927f39d05f8e87c1adb00c1c516b28">MODE_GONOGO</a> &amp;&amp; is_red_gonogo) {</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>                <span class="keywordflow">if</span> (pressed) {</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>                    printf(<span class="stringliteral">&quot;¡ERROR! Falsa alarma (Presionó en ROJO)\r\n&quot;</span>);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>                    <a class="code hl_function" href="group___timer.html#ga0860e7ffff656386879c7dcd600d0629">TimerStop</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a7537925211db58591cb5eeb7ebc7f44f">TIMER_B</a>);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>                    reaction_in_progress = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>                    printf(<span class="stringliteral">&quot;¡CORRECTO! Inhibición lograda en ROJO\r\n&quot;</span>);</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>                }</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>            } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>                <span class="keywordflow">if</span> (pressed &amp;&amp; !reaction_in_progress) {</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>                    printf(<span class="stringliteral">&quot;¡Acierto! Tiempo de reacción: %ld ms\r\n&quot;</span>, (<span class="keywordtype">long</span>)final_reaction_time);</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>                } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>                    <a class="code hl_function" href="group___timer.html#ga0860e7ffff656386879c7dcd600d0629">TimerStop</a>(<a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a7537925211db58591cb5eeb7ebc7f44f">TIMER_B</a>);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>                    reaction_in_progress = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>                    printf(current_mode == <a class="code hl_enumvalue" href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da23927f39d05f8e87c1adb00c1c516b28">MODE_GONOGO</a> ? <span class="stringliteral">&quot;Tiempo agotado. Omisión en VERDE.\r\n&quot;</span> </div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>                                                       : <span class="stringliteral">&quot;Tiempo agotado. Demasiado lento.\r\n&quot;</span>);</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>                }</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>            }</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>            <span class="keywordflow">if</span> (activo) vTaskDelay(pdMS_TO_TICKS(2000));</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>            <span class="keywordflow">if</span> (last_activo) {</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>                printf(<span class="stringliteral">&quot;\n--- DISPOSITIVO APAGADO ---\r\n&quot;</span>);</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>                last_activo = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>            }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>            <a class="code hl_function" href="group___neo_pixel___stripe.html#ga7eda8ecf6370a5af575af2ca85eafa6d">NeoPixelAllOff</a>();</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>            ulTaskNotifyTake(pdTRUE, portMAX_DELAY);</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        }</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    }</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>}</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span><span class="comment">/*==================[main]===================================================*/</span></div>
+<div class="foldopen" id="foldopen00326" data-start="{" data-end="}">
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="proyecto__integrador_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70">  326</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="proyecto__integrador_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a>(<span class="keywordtype">void</span>) {</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>    <a class="code hl_function" href="group___neo_pixel___stripe.html#ga1dd960cb0564070aae4f05d455a21942">NeoPixelInit</a>(<a class="code hl_define" href="proyecto__integrador_8c.html#a843b341668408e5656cf19cf3389bb5a">LED_GPIO</a>, <a class="code hl_define" href="proyecto__integrador_8c.html#a4c4ae9a4146ce8d6a5debc90300d9abd">NUM_LEDS</a>, led_colors);</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>    <a class="code hl_function" href="group___neo_pixel___stripe.html#gacebd73c47572bd32b7f578e3dd98cc2f">NeoPixelBrightness</a>(255);</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>    <a class="code hl_function" href="group___switch.html#ga8eb2865a73bf2d2b9fd6760958a0cc3c">SwitchesInit</a>();</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>    <a class="code hl_function" href="group___switch.html#ga9847b9081e3cb39dd3ec01eaee8323b2">SwitchActivInt</a>(<a class="code hl_enumvalue" href="group___switch.html#gga8caa2df6d25fea5a14eb4533df1d5cfaa24caa46485c5fec2211b3ebd8a1eee77">SWITCH_1</a>, <a class="code hl_function" href="proyecto__integrador_8c.html#af9405586451658575c5c0779e2e20f0b">ButtonReactionISR</a>, NULL);</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <a class="code hl_function" href="group___switch.html#ga9847b9081e3cb39dd3ec01eaee8323b2">SwitchActivInt</a>(<a class="code hl_enumvalue" href="group___switch.html#gga8caa2df6d25fea5a14eb4533df1d5cfaa73fda67835d5d51aa9251fee781a7434">SWITCH_2</a>, <a class="code hl_function" href="proyecto__integrador_8c.html#adaccf37e70bfb1a3179dbff0c5372c82">Switch2Callback</a>, NULL);</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> </div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <a class="code hl_function" href="group___g_i_o_p.html#ga10240d283f64bd1b09fca664fda27964">GPIOInit</a>(<a class="code hl_define" href="proyecto__integrador_8c.html#aa325fca333ac804ca4de668db6408529">EXTERNAL_BUTTON_GPIO</a>, <a class="code hl_enumvalue" href="group___g_i_o_p.html#gga423620ef7d69894833f70cfc395caaa9aa1ea38ffc304a6c32480a65b5fec7302">GPIO_INPUT</a>);</div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>    <a class="code hl_function" href="group___g_i_o_p.html#ga3f43faf280a63697678036bdbd434c46">GPIOInputFilter</a>(<a class="code hl_define" href="proyecto__integrador_8c.html#aa325fca333ac804ca4de668db6408529">EXTERNAL_BUTTON_GPIO</a>);</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>    <a class="code hl_function" href="group___g_i_o_p.html#gad5488fbc04a198d3d3fd3d1b04e6c5f5">GPIOActivInt</a>(<a class="code hl_define" href="proyecto__integrador_8c.html#aa325fca333ac804ca4de668db6408529">EXTERNAL_BUTTON_GPIO</a>, <a class="code hl_function" href="proyecto__integrador_8c.html#af9405586451658575c5c0779e2e20f0b">ButtonReactionISR</a>, <span class="keyword">false</span>, NULL);</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span> </div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>    <a class="code hl_struct" href="structserial__config__t.html">serial_config_t</a> uart_cfg = { .port = <a class="code hl_enumvalue" href="group___u_a_r_t.html#gga6e1a445bae87c4cfd26710dbd4657b77af81669fbb473eedf3d1789fcf08d9056">UART_PC</a>, .baud_rate = 115200, .func_p = <a class="code hl_function" href="proyecto__integrador_8c.html#a3b1cf6d12843e5369fbf2b58bb677f35">UartReceiveISR</a>, .param_p = NULL };</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>    <a class="code hl_function" href="group___u_a_r_t.html#ga440f6a03dfd8b310f5fdf42c3bf20c42">UartInit</a>(&amp;uart_cfg);</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>    <a class="code hl_struct" href="structtimer__config__t.html">timer_config_t</a> timer_a_cfg = { .timer = <a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a179b1231f027eba52fa4ef94ec174598">TIMER_A</a>, .period = 1000000, .func_p = <a class="code hl_function" href="proyecto__integrador_8c.html#ad604b3c6f3dca4732597fc92b3fb9a07">TimerACallback</a>, .param_p = NULL };</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>    <a class="code hl_function" href="group___timer.html#gae8617c0d176463a60441464ad26563f6">TimerInit</a>(&amp;timer_a_cfg);</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>    <a class="code hl_struct" href="structtimer__config__t.html">timer_config_t</a> timer_b_cfg = { .timer = <a class="code hl_enumvalue" href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a7537925211db58591cb5eeb7ebc7f44f">TIMER_B</a>, .period = 0xFFFFFFFF, .func_p = NULL, .param_p = NULL };</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>    <a class="code hl_function" href="group___timer.html#gae8617c0d176463a60441464ad26563f6">TimerInit</a>(&amp;timer_b_cfg);</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span> </div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    xTaskCreate(UartTask, <span class="stringliteral">&quot;UartTask&quot;</span>, 2048, NULL, 3, &amp;uart_task_handle);</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    xTaskCreate(ControlTask, <span class="stringliteral">&quot;ControlTask&quot;</span>, 3072, NULL, 4, &amp;control_task_handle);</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>}</div>
+</div>
+<div class="ttc" id="agpio__mcu_8h_html"><div class="ttname"><a href="gpio__mcu_8h.html">gpio_mcu.h</a></div></div>
+<div class="ttc" id="agroup___g_i_o_p_html_ga10240d283f64bd1b09fca664fda27964"><div class="ttname"><a href="group___g_i_o_p.html#ga10240d283f64bd1b09fca664fda27964">GPIOInit</a></div><div class="ttdeci">void GPIOInit(gpio_t pin, io_t io)</div><div class="ttdoc">GPIO initialization.</div><div class="ttdef"><b>Definition</b> <a href="gpio__mcu_8c_source.html#l00067">gpio_mcu.c:67</a></div></div>
+<div class="ttc" id="agroup___g_i_o_p_html_ga3f43faf280a63697678036bdbd434c46"><div class="ttname"><a href="group___g_i_o_p.html#ga3f43faf280a63697678036bdbd434c46">GPIOInputFilter</a></div><div class="ttdeci">void GPIOInputFilter(gpio_t pin)</div><div class="ttdoc">Configure an input glitch filter to a GPIO.</div><div class="ttdef"><b>Definition</b> <a href="gpio__mcu_8c_source.html#l00119">gpio_mcu.c:119</a></div></div>
+<div class="ttc" id="agroup___g_i_o_p_html_gad5488fbc04a198d3d3fd3d1b04e6c5f5"><div class="ttname"><a href="group___g_i_o_p.html#gad5488fbc04a198d3d3fd3d1b04e6c5f5">GPIOActivInt</a></div><div class="ttdeci">void GPIOActivInt(gpio_t pin, void *ptr_int_func, bool edge, void *args)</div><div class="ttdoc">Configure GPIO input interruption.</div><div class="ttdef"><b>Definition</b> <a href="gpio__mcu_8c_source.html#l00105">gpio_mcu.c:105</a></div></div>
+<div class="ttc" id="agroup___g_i_o_p_html_gga423620ef7d69894833f70cfc395caaa9aa1ea38ffc304a6c32480a65b5fec7302"><div class="ttname"><a href="group___g_i_o_p.html#gga423620ef7d69894833f70cfc395caaa9aa1ea38ffc304a6c32480a65b5fec7302">GPIO_INPUT</a></div><div class="ttdeci">@ GPIO_INPUT</div><div class="ttdef"><b>Definition</b> <a href="gpio__mcu_8h_source.html#l00043">gpio_mcu.h:43</a></div></div>
+<div class="ttc" id="agroup___neo_pixel___stripe_html_ga00aedd9bd24d607244a314348180bdb8"><div class="ttname"><a href="group___neo_pixel___stripe.html#ga00aedd9bd24d607244a314348180bdb8">NeoPixelAllColor</a></div><div class="ttdeci">void NeoPixelAllColor(neopixel_color_t color)</div><div class="ttdoc">Change all NeoPixels in the stripe to the same color.</div><div class="ttdef"><b>Definition</b> <a href="neopixel__stripe_8c_source.html#l00058">neopixel_stripe.c:58</a></div></div>
+<div class="ttc" id="agroup___neo_pixel___stripe_html_ga1dd960cb0564070aae4f05d455a21942"><div class="ttname"><a href="group___neo_pixel___stripe.html#ga1dd960cb0564070aae4f05d455a21942">NeoPixelInit</a></div><div class="ttdeci">void NeoPixelInit(gpio_t pin, uint16_t len, neopixel_color_t *color_array)</div><div class="ttdoc">NeoPixel array initialization.</div><div class="ttdef"><b>Definition</b> <a href="neopixel__stripe_8c_source.html#l00038">neopixel_stripe.c:38</a></div></div>
+<div class="ttc" id="agroup___neo_pixel___stripe_html_ga46c58082e9d85e6503e36f0e2306bb39"><div class="ttname"><a href="group___neo_pixel___stripe.html#ga46c58082e9d85e6503e36f0e2306bb39">neopixel_color_t</a></div><div class="ttdeci">uint32_t neopixel_color_t</div><div class="ttdoc">24 bits color</div><div class="ttdef"><b>Definition</b> <a href="neopixel__stripe_8h_source.html#l00071">neopixel_stripe.h:71</a></div></div>
+<div class="ttc" id="agroup___neo_pixel___stripe_html_ga7eda8ecf6370a5af575af2ca85eafa6d"><div class="ttname"><a href="group___neo_pixel___stripe.html#ga7eda8ecf6370a5af575af2ca85eafa6d">NeoPixelAllOff</a></div><div class="ttdeci">void NeoPixelAllOff(void)</div><div class="ttdoc">Turn off all NeoPixels.</div><div class="ttdef"><b>Definition</b> <a href="neopixel__stripe_8c_source.html#l00044">neopixel_stripe.c:44</a></div></div>
+<div class="ttc" id="agroup___neo_pixel___stripe_html_gacebd73c47572bd32b7f578e3dd98cc2f"><div class="ttname"><a href="group___neo_pixel___stripe.html#gacebd73c47572bd32b7f578e3dd98cc2f">NeoPixelBrightness</a></div><div class="ttdeci">void NeoPixelBrightness(uint8_t bright)</div><div class="ttdoc">Change NeoPixel brightness.</div><div class="ttdef"><b>Definition</b> <a href="neopixel__stripe_8c_source.html#l00107">neopixel_stripe.c:107</a></div></div>
+<div class="ttc" id="agroup___neo_pixel___stripe_html_gaf687598b356c6dab43afa17df8014a22"><div class="ttname"><a href="group___neo_pixel___stripe.html#gaf687598b356c6dab43afa17df8014a22">NeoPixelRgb2Color</a></div><div class="ttdeci">neopixel_color_t NeoPixelRgb2Color(uint8_t red, uint8_t green, uint8_t blue)</div><div class="ttdoc">Convert 3 individual color levels (R, G, B) to a 24bits color data.</div><div class="ttdef"><b>Definition</b> <a href="neopixel__stripe_8c_source.html#l00121">neopixel_stripe.c:121</a></div></div>
+<div class="ttc" id="agroup___switch_html_ga8eb2865a73bf2d2b9fd6760958a0cc3c"><div class="ttname"><a href="group___switch.html#ga8eb2865a73bf2d2b9fd6760958a0cc3c">SwitchesInit</a></div><div class="ttdeci">int8_t SwitchesInit(void)</div><div class="ttdoc">ESP-EDU switches initialization.</div><div class="ttdef"><b>Definition</b> <a href="switch_8c_source.html#l00029">switch.c:29</a></div></div>
+<div class="ttc" id="agroup___switch_html_ga9847b9081e3cb39dd3ec01eaee8323b2"><div class="ttname"><a href="group___switch.html#ga9847b9081e3cb39dd3ec01eaee8323b2">SwitchActivInt</a></div><div class="ttdeci">void SwitchActivInt(switch_t tec, void *ptrIntFunc, void *args)</div><div class="ttdoc">Enables the interruption of a particular key and assigns a callback function.</div><div class="ttdef"><b>Definition</b> <a href="switch_8c_source.html#l00047">switch.c:47</a></div></div>
+<div class="ttc" id="agroup___switch_html_gga8caa2df6d25fea5a14eb4533df1d5cfaa24caa46485c5fec2211b3ebd8a1eee77"><div class="ttname"><a href="group___switch.html#gga8caa2df6d25fea5a14eb4533df1d5cfaa24caa46485c5fec2211b3ebd8a1eee77">SWITCH_1</a></div><div class="ttdeci">@ SWITCH_1</div><div class="ttdef"><b>Definition</b> <a href="switch_8h_source.html#l00032">switch.h:32</a></div></div>
+<div class="ttc" id="agroup___switch_html_gga8caa2df6d25fea5a14eb4533df1d5cfaa73fda67835d5d51aa9251fee781a7434"><div class="ttname"><a href="group___switch.html#gga8caa2df6d25fea5a14eb4533df1d5cfaa73fda67835d5d51aa9251fee781a7434">SWITCH_2</a></div><div class="ttdeci">@ SWITCH_2</div><div class="ttdef"><b>Definition</b> <a href="switch_8h_source.html#l00033">switch.h:33</a></div></div>
+<div class="ttc" id="agroup___timer_html_ga0860e7ffff656386879c7dcd600d0629"><div class="ttname"><a href="group___timer.html#ga0860e7ffff656386879c7dcd600d0629">TimerStop</a></div><div class="ttdeci">void TimerStop(timer_mcu_t timer)</div><div class="ttdoc">Pause timer.</div><div class="ttdef"><b>Definition</b> <a href="timer__mcu_8c_source.html#l00146">timer_mcu.c:146</a></div></div>
+<div class="ttc" id="agroup___timer_html_ga0b1779c5b8f91cc83c8bfd127071ea2f"><div class="ttname"><a href="group___timer.html#ga0b1779c5b8f91cc83c8bfd127071ea2f">TimerStart</a></div><div class="ttdeci">void TimerStart(timer_mcu_t timer)</div><div class="ttdoc">Start timer count.</div><div class="ttdef"><b>Definition</b> <a href="timer__mcu_8c_source.html#l00116">timer_mcu.c:116</a></div></div>
+<div class="ttc" id="agroup___timer_html_ga123ccb39ca948b099917fc7a8d73fba4"><div class="ttname"><a href="group___timer.html#ga123ccb39ca948b099917fc7a8d73fba4">TimerUpdatePeriod</a></div><div class="ttdeci">void TimerUpdatePeriod(timer_mcu_t timer, uint32_t period)</div><div class="ttdoc">Update timer period.</div><div class="ttdef"><b>Definition</b> <a href="timer__mcu_8c_source.html#l00174">timer_mcu.c:174</a></div></div>
+<div class="ttc" id="agroup___timer_html_ga1e39dd9df84ea59700f20ec1d92c6291"><div class="ttname"><a href="group___timer.html#ga1e39dd9df84ea59700f20ec1d92c6291">TimerRead</a></div><div class="ttdeci">uint32_t TimerRead(timer_mcu_t timer)</div><div class="ttdoc">Read the current value of the selected timer.</div><div class="ttdef"><b>Definition</b> <a href="timer__mcu_8c_source.html#l00130">timer_mcu.c:130</a></div></div>
+<div class="ttc" id="agroup___timer_html_ga80ed309959e5a179f5676ed4af547fa1"><div class="ttname"><a href="group___timer.html#ga80ed309959e5a179f5676ed4af547fa1">TimerReset</a></div><div class="ttdeci">void TimerReset(timer_mcu_t timer)</div><div class="ttdoc">Reset timer count to 0.</div><div class="ttdef"><b>Definition</b> <a href="timer__mcu_8c_source.html#l00160">timer_mcu.c:160</a></div></div>
+<div class="ttc" id="agroup___timer_html_gae8617c0d176463a60441464ad26563f6"><div class="ttname"><a href="group___timer.html#gae8617c0d176463a60441464ad26563f6">TimerInit</a></div><div class="ttdeci">void TimerInit(timer_config_t *timer_ini)</div><div class="ttdoc">Timer initialization.</div><div class="ttdef"><b>Definition</b> <a href="timer__mcu_8c_source.html#l00067">timer_mcu.c:67</a></div></div>
+<div class="ttc" id="agroup___timer_html_ggacc4e64394d03a6e790f8e52c674534d9a179b1231f027eba52fa4ef94ec174598"><div class="ttname"><a href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a179b1231f027eba52fa4ef94ec174598">TIMER_A</a></div><div class="ttdeci">@ TIMER_A</div><div class="ttdef"><b>Definition</b> <a href="timer__mcu_8h_source.html#l00032">timer_mcu.h:32</a></div></div>
+<div class="ttc" id="agroup___timer_html_ggacc4e64394d03a6e790f8e52c674534d9a7537925211db58591cb5eeb7ebc7f44f"><div class="ttname"><a href="group___timer.html#ggacc4e64394d03a6e790f8e52c674534d9a7537925211db58591cb5eeb7ebc7f44f">TIMER_B</a></div><div class="ttdeci">@ TIMER_B</div><div class="ttdef"><b>Definition</b> <a href="timer__mcu_8h_source.html#l00033">timer_mcu.h:33</a></div></div>
+<div class="ttc" id="agroup___u_a_r_t_html_ga37f1b16880c3ca70ed2e543566d555d2"><div class="ttname"><a href="group___u_a_r_t.html#ga37f1b16880c3ca70ed2e543566d555d2">UartReadByte</a></div><div class="ttdeci">uint8_t UartReadByte(uart_mcu_port_t port, uint8_t *data)</div><div class="ttdoc">Read a single byte from serial port.</div><div class="ttdef"><b>Definition</b> <a href="uart__mcu_8c_source.html#l00142">uart_mcu.c:142</a></div></div>
+<div class="ttc" id="agroup___u_a_r_t_html_ga440f6a03dfd8b310f5fdf42c3bf20c42"><div class="ttname"><a href="group___u_a_r_t.html#ga440f6a03dfd8b310f5fdf42c3bf20c42">UartInit</a></div><div class="ttdeci">void UartInit(serial_config_t *port_config)</div><div class="ttdoc">Serial port initialization.</div><div class="ttdef"><b>Definition</b> <a href="uart__mcu_8c_source.html#l00107">uart_mcu.c:107</a></div></div>
+<div class="ttc" id="agroup___u_a_r_t_html_gga6e1a445bae87c4cfd26710dbd4657b77af81669fbb473eedf3d1789fcf08d9056"><div class="ttname"><a href="group___u_a_r_t.html#gga6e1a445bae87c4cfd26710dbd4657b77af81669fbb473eedf3d1789fcf08d9056">UART_PC</a></div><div class="ttdeci">@ UART_PC</div><div class="ttdef"><b>Definition</b> <a href="uart__mcu_8h_source.html#l00032">uart_mcu.h:32</a></div></div>
+<div class="ttc" id="aneopixel__stripe_8h_html"><div class="ttname"><a href="neopixel__stripe_8h.html">neopixel_stripe.h</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a3b1cf6d12843e5369fbf2b58bb677f35"><div class="ttname"><a href="proyecto__integrador_8c.html#a3b1cf6d12843e5369fbf2b58bb677f35">UartReceiveISR</a></div><div class="ttdeci">void UartReceiveISR(void *p)</div><div class="ttdoc">Callback de interrupción por recepción de byte en el puerto serie (UART_PC).</div><div class="ttdef"><b>Definition</b> <a href="#l00175">proyecto_integrador.c:175</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a4c4ae9a4146ce8d6a5debc90300d9abd"><div class="ttname"><a href="proyecto__integrador_8c.html#a4c4ae9a4146ce8d6a5debc90300d9abd">NUM_LEDS</a></div><div class="ttdeci">#define NUM_LEDS</div><div class="ttdoc">Cantidad total de LEDs RGB en la tira NeoPixel.</div><div class="ttdef"><b>Definition</b> <a href="#l00041">proyecto_integrador.c:41</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a4d6c26471b0be27abfef61b166b5ed86"><div class="ttname"><a href="proyecto__integrador_8c.html#a4d6c26471b0be27abfef61b166b5ed86">MIN_OFF_US</a></div><div class="ttdeci">#define MIN_OFF_US</div><div class="ttdoc">Tiempo mínimo de espera aleatoria antes de encender el estímulo (1 segundo en us).</div><div class="ttdef"><b>Definition</b> <a href="#l00050">proyecto_integrador.c:50</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a53bb6ce0dbc843daa4ad914d78713ac2"><div class="ttname"><a href="proyecto__integrador_8c.html#a53bb6ce0dbc843daa4ad914d78713ac2">TIMEOUT_MS</a></div><div class="ttdeci">#define TIMEOUT_MS</div><div class="ttdoc">Tiempo límite máximo de espera para registrar una pulsación (3 segundos en ms).</div><div class="ttdef"><b>Definition</b> <a href="#l00056">proyecto_integrador.c:56</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a630544a7f0a2cc40d8a7fefab7e2fe70"><div class="ttname"><a href="proyecto__integrador_8c.html#a630544a7f0a2cc40d8a7fefab7e2fe70">app_main</a></div><div class="ttdeci">void app_main(void)</div><div class="ttdoc">Punto de entrada principal de la aplicación en ESP-IDF.</div><div class="ttdef"><b>Definition</b> <a href="#l00326">proyecto_integrador.c:326</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a7aa0c0b9a6c756e1424775e7b20bff1d"><div class="ttname"><a href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1d">color_mode_t</a></div><div class="ttdeci">color_mode_t</div><div class="ttdoc">Modos de operación disponibles para el estímulo visual.</div><div class="ttdef"><b>Definition</b> <a href="#l00061">proyecto_integrador.c:61</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a7aa0c0b9a6c756e1424775e7b20bff1da23927f39d05f8e87c1adb00c1c516b28"><div class="ttname"><a href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da23927f39d05f8e87c1adb00c1c516b28">MODE_GONOGO</a></div><div class="ttdeci">@ MODE_GONOGO</div><div class="ttdef"><b>Definition</b> <a href="#l00066">proyecto_integrador.c:66</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a7aa0c0b9a6c756e1424775e7b20bff1da3941c58f6871b3fac36222c1970a8569"><div class="ttname"><a href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da3941c58f6871b3fac36222c1970a8569">MODE_RED</a></div><div class="ttdeci">@ MODE_RED</div><div class="ttdef"><b>Definition</b> <a href="#l00062">proyecto_integrador.c:62</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a7aa0c0b9a6c756e1424775e7b20bff1da92f01f9a4b1ad0f619691ba5c7b8e88f"><div class="ttname"><a href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1da92f01f9a4b1ad0f619691ba5c7b8e88f">MODE_RANDOM</a></div><div class="ttdeci">@ MODE_RANDOM</div><div class="ttdef"><b>Definition</b> <a href="#l00065">proyecto_integrador.c:65</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a7aa0c0b9a6c756e1424775e7b20bff1dab822c6222230ac2012fbae74935be22a"><div class="ttname"><a href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1dab822c6222230ac2012fbae74935be22a">MODE_GREEN</a></div><div class="ttdeci">@ MODE_GREEN</div><div class="ttdef"><b>Definition</b> <a href="#l00064">proyecto_integrador.c:64</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a7aa0c0b9a6c756e1424775e7b20bff1daf567bc541dd4a3f8060b85a0999bb064"><div class="ttname"><a href="proyecto__integrador_8c.html#a7aa0c0b9a6c756e1424775e7b20bff1daf567bc541dd4a3f8060b85a0999bb064">MODE_YELLOW</a></div><div class="ttdeci">@ MODE_YELLOW</div><div class="ttdef"><b>Definition</b> <a href="#l00063">proyecto_integrador.c:63</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_a843b341668408e5656cf19cf3389bb5a"><div class="ttname"><a href="proyecto__integrador_8c.html#a843b341668408e5656cf19cf3389bb5a">LED_GPIO</a></div><div class="ttdeci">#define LED_GPIO</div><div class="ttdoc">Pin GPIO conectado a la línea de datos de la tira NeoPixel.</div><div class="ttdef"><b>Definition</b> <a href="#l00044">proyecto_integrador.c:44</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_aa325fca333ac804ca4de668db6408529"><div class="ttname"><a href="proyecto__integrador_8c.html#aa325fca333ac804ca4de668db6408529">EXTERNAL_BUTTON_GPIO</a></div><div class="ttdeci">#define EXTERNAL_BUTTON_GPIO</div><div class="ttdoc">Pin GPIO configurado como entrada para el pulsador externo de respuesta.</div><div class="ttdef"><b>Definition</b> <a href="#l00047">proyecto_integrador.c:47</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_ad604b3c6f3dca4732597fc92b3fb9a07"><div class="ttname"><a href="proyecto__integrador_8c.html#ad604b3c6f3dca4732597fc92b3fb9a07">TimerACallback</a></div><div class="ttdeci">void TimerACallback(void *p)</div><div class="ttdoc">Callback de interrupción por vencimiento del temporizador de espera (TIMER_A).</div><div class="ttdef"><b>Definition</b> <a href="#l00117">proyecto_integrador.c:117</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_adaccf37e70bfb1a3179dbff0c5372c82"><div class="ttname"><a href="proyecto__integrador_8c.html#adaccf37e70bfb1a3179dbff0c5372c82">Switch2Callback</a></div><div class="ttdeci">void Switch2Callback(void *p)</div><div class="ttdoc">Callback de interrupción del pulsador de encendido/apagado (SWITCH_2).</div><div class="ttdef"><b>Definition</b> <a href="#l00160">proyecto_integrador.c:160</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_ae2657ec9a39c13597b22643980cf5f40"><div class="ttname"><a href="proyecto__integrador_8c.html#ae2657ec9a39c13597b22643980cf5f40">MAX_OFF_US</a></div><div class="ttdeci">#define MAX_OFF_US</div><div class="ttdoc">Tiempo máximo de espera aleatoria antes de encender el estímulo (10 segundos en us).</div><div class="ttdef"><b>Definition</b> <a href="#l00053">proyecto_integrador.c:53</a></div></div>
+<div class="ttc" id="aproyecto__integrador_8c_html_af9405586451658575c5c0779e2e20f0b"><div class="ttname"><a href="proyecto__integrador_8c.html#af9405586451658575c5c0779e2e20f0b">ButtonReactionISR</a></div><div class="ttdeci">void ButtonReactionISR(void *p)</div><div class="ttdoc">Callback de interrupción para los pulsadores de respuesta (SWITCH_1 y GPIO_0).</div><div class="ttdef"><b>Definition</b> <a href="#l00149">proyecto_integrador.c:149</a></div></div>
+<div class="ttc" id="astructserial__config__t_html"><div class="ttname"><a href="structserial__config__t.html">serial_config_t</a></div><div class="ttdoc">Serial port configuration struct.</div><div class="ttdef"><b>Definition</b> <a href="uart__mcu_8h_source.html#l00038">uart_mcu.h:38</a></div></div>
+<div class="ttc" id="astructtimer__config__t_html"><div class="ttname"><a href="structtimer__config__t.html">timer_config_t</a></div><div class="ttdoc">Timer configuration struct.</div><div class="ttdef"><b>Definition</b> <a href="timer__mcu_8h_source.html#l00039">timer_mcu.h:39</a></div></div>
+<div class="ttc" id="aswitch_8h_html"><div class="ttname"><a href="switch_8h.html">switch.h</a></div></div>
+<div class="ttc" id="atimer__mcu_8h_html"><div class="ttname"><a href="timer__mcu_8h.html">timer_mcu.h</a></div></div>
+<div class="ttc" id="auart__mcu_8h_html"><div class="ttname"><a href="uart__mcu_8h.html">uart_mcu.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+</div><!-- container -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a href="dir_d9edf6c004b4a7ff14fe9ae7a92214ee.html">firmware</a></li><li class="navelem"><a href="dir_429d80758da54da73083af4edd40d0b3.html">projects</a></li><li class="navelem"><a href="dir_4d4424f439ee5cabd21394bfc6e97a0b.html">proyecto_integrador</a></li><li class="navelem"><a href="dir_c68839fcd73cec7ec2d7949ab9e1a94b.html">main</a></li><li class="navelem"><a href="proyecto__integrador_8c.html">proyecto_integrador.c</a></li>
+    <li class="footer">Generado por <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.17.0 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -29,10 +29,10 @@ COLOR_MAP = {
 class MonitorUARTApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Entrenador de Tiempo de Reacción")
-        self.root.geometry("1100x820")
+        self.root.title("Entrenador de Tiempo de Reacción - Monitor UART & Análisis")
+        self.root.geometry("1250x900")
 
-        # Configurar estilos globales de TTK
+        # Configurar estilos globales de TTK para fuentes grandes
         self.setup_styles()
 
         # Variables de estado del examen
@@ -71,58 +71,64 @@ class MonitorUARTApp:
         self.conectar_serial()
 
     def setup_styles(self):
-        """Aumenta el tamaño de las fuentes en componentes de TTK."""
+        """Aumenta sustancialmente el tamaño de las fuentes en componentes TTK."""
         style = ttk.Style()
         style.theme_use('default')
 
-        style.configure("TNotebook.Tab", font=("Helvetica", 11, "bold"), padding=[10, 5])
-        style.configure("Treeview.Heading", font=("Helvetica", 11, "bold"))
-        style.configure("Treeview", font=("Helvetica", 10), rowheight=26)
-        style.configure("TCombobox", font=("Helvetica", 11))
+        # Estilo de las pestañas superiores
+        style.configure("TNotebook.Tab", font=("Helvetica", 13, "bold"), padding=[14, 8])
+        
+        # Estilo de los encabezados y filas de las tablas (Treeview)
+        style.configure("Treeview.Heading", font=("Helvetica", 13, "bold"))
+        style.configure("Treeview", font=("Helvetica", 12), rowheight=32)
+        
+        # Estilo de las listas desplegables (Combobox)
+        style.configure("TCombobox", font=("Helvetica", 12))
 
     # --- PESTAÑA 1: CONTROL Y EXAMEN ---
     def build_control_tab(self):
         top_frame = tk.LabelFrame(self.tab_control, text=" Configuración de Evaluación ", 
-                                  font=("Helvetica", 11, "bold"), padx=10, pady=8)
-        top_frame.pack(padx=10, pady=5, fill=tk.X)
+                                  font=("Helvetica", 13, "bold"), padx=14, pady=12)
+        top_frame.pack(padx=10, pady=8, fill=tk.X)
 
-        tk.Label(top_frame, text="Nombre:", font=("Helvetica", 11)).grid(row=0, column=0, padx=5, pady=5, sticky="w")
-        self.entry_nombre = tk.Entry(top_frame, width=18, font=("Helvetica", 11))
+        tk.Label(top_frame, text="Nombre:", font=("Helvetica", 13)).grid(row=0, column=0, padx=6, pady=6, sticky="w")
+        self.entry_nombre = tk.Entry(top_frame, width=18, font=("Helvetica", 13))
         self.entry_nombre.insert(0, "Participante 1")
-        self.entry_nombre.grid(row=0, column=1, padx=5, pady=5, sticky="w")
+        self.entry_nombre.grid(row=0, column=1, padx=6, pady=6, sticky="w")
 
-        tk.Label(top_frame, text="Color / Modo:", font=("Helvetica", 11)).grid(row=0, column=2, padx=5, pady=5, sticky="w")
+        tk.Label(top_frame, text="Color / Modo:", font=("Helvetica", 13)).grid(row=0, column=2, padx=6, pady=6, sticky="w")
         self.color_var = tk.StringVar(value='1')
-        color_combo = ttk.Combobox(top_frame, textvariable=self.color_var, state="readonly", width=15, font=("Helvetica", 11))
+        color_combo = ttk.Combobox(top_frame, textvariable=self.color_var, state="readonly", width=15, font=("Helvetica", 12))
         color_combo['values'] = ('1 - Rojo', '2 - Amarillo', '3 - Verde', '4 - Aleatorio', '5 - Go/No-Go')
         color_combo.current(0)
-        color_combo.grid(row=0, column=3, padx=5, pady=5, sticky="w")
+        color_combo.grid(row=0, column=3, padx=6, pady=6, sticky="w")
         color_combo.bind("<<ComboboxSelected>>", self.on_color_change)
 
         self.btn_exam = tk.Button(top_frame, text="▶ INICIAR EXAMEN (10 Ensayos)", 
-                                  bg="#4CAF50", fg="white", font=("Helvetica", 10, "bold"), padx=8, pady=4,
+                                  bg="#4CAF50", fg="white", font=("Helvetica", 12, "bold"), padx=12, pady=6,
                                   command=self.toggle_exam_mode)
-        self.btn_exam.grid(row=0, column=4, padx=10, pady=5)
+        self.btn_exam.grid(row=0, column=4, padx=12, pady=6)
 
         btn_leaderboard = tk.Button(top_frame, text="🏆 LEADERBOARD", 
-                                    bg="#FFD700", fg="black", font=("Helvetica", 10, "bold"), padx=8, pady=4,
+                                    bg="#FFD700", fg="black", font=("Helvetica", 12, "bold"), padx=12, pady=6,
                                     command=self.open_leaderboard)
-        btn_leaderboard.grid(row=0, column=5, padx=10, pady=5)
+        btn_leaderboard.grid(row=0, column=5, padx=12, pady=6)
 
         self.lbl_status = tk.Label(top_frame, text="Estado: Modo Normal (Inactivo)", 
-                                   font=("Helvetica", 11, "italic"), fg="gray")
-        self.lbl_status.grid(row=1, column=0, columnspan=6, padx=5, pady=4, sticky="w")
+                                   font=("Helvetica", 13, "italic"), fg="gray")
+        self.lbl_status.grid(row=1, column=0, columnspan=6, padx=6, pady=8, sticky="w")
 
         center_frame = tk.Frame(self.tab_control)
         center_frame.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
 
-        console_frame = tk.LabelFrame(center_frame, text=" Terminal UART ", font=("Helvetica", 11, "bold"))
+        console_frame = tk.LabelFrame(center_frame, text=" Terminal UART ", font=("Helvetica", 13, "bold"))
         console_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 5))
         
-        self.text_area = scrolledtext.ScrolledText(console_frame, wrap=tk.WORD, font=("Consolas", 11), width=35)
-        self.text_area.pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        # TERMINAL UART: Fuente ampliada a Consolas 15
+        self.text_area = scrolledtext.ScrolledText(console_frame, wrap=tk.WORD, font=("Consolas", 15), width=35)
+        self.text_area.pack(padx=6, pady=6, fill=tk.BOTH, expand=True)
 
-        db_frame = tk.LabelFrame(center_frame, text=" Historial de Exámenes Recientes ", font=("Helvetica", 11, "bold"))
+        db_frame = tk.LabelFrame(center_frame, text=" Historial de Exámenes Recientes ", font=("Helvetica", 13, "bold"))
         db_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=(5, 0))
 
         columns = ("id", "nombre", "color", "promedio", "mediciones", "fecha")
@@ -134,64 +140,64 @@ class MonitorUARTApp:
         self.tree.heading("mediciones", text="Registros (ms)")
         self.tree.heading("fecha", text="Fecha / Hora")
 
-        self.tree.column("id", width=35, anchor=tk.CENTER)
-        self.tree.column("nombre", width=100)
-        self.tree.column("color", width=90, anchor=tk.CENTER)
-        self.tree.column("promedio", width=110, anchor=tk.CENTER)
-        self.tree.column("mediciones", width=200)
-        self.tree.column("fecha", width=130, anchor=tk.CENTER)
-        self.tree.pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        self.tree.column("id", width=45, anchor=tk.CENTER)
+        self.tree.column("nombre", width=120)
+        self.tree.column("color", width=110, anchor=tk.CENTER)
+        self.tree.column("promedio", width=130, anchor=tk.CENTER)
+        self.tree.column("mediciones", width=220)
+        self.tree.column("fecha", width=150, anchor=tk.CENTER)
+        self.tree.pack(padx=6, pady=6, fill=tk.BOTH, expand=True)
 
         btn_frame = tk.Frame(self.tab_control)
-        btn_frame.pack(pady=10)
+        btn_frame.pack(pady=12)
 
         tk.Button(btn_frame, text="⚡ Encender / Apagar Dispositivo (a)", 
-                  bg="#e0e0e0", font=("Helvetica", 11, "bold"), padx=12, pady=6,
+                  bg="#e0e0e0", font=("Helvetica", 13, "bold"), padx=16, pady=8,
                   command=lambda: self.send_command('a')).pack()
 
     # --- PESTAÑA 2: ANÁLISIS ESTADÍSTICO Y GRÁFICAS ---
     def build_stats_tab(self):
         selector_frame = tk.LabelFrame(self.tab_stats, text=" Selección de Muestra ", 
-                                       font=("Helvetica", 11, "bold"), padx=10, pady=10)
+                                       font=("Helvetica", 13, "bold"), padx=14, pady=12)
         selector_frame.pack(padx=10, pady=5, fill=tk.X)
 
-        tk.Label(selector_frame, text="Seleccionar Examen Almacenado:", font=("Helvetica", 11, "bold")).pack(side=tk.LEFT, padx=5)
+        tk.Label(selector_frame, text="Seleccionar Examen Almacenado:", font=("Helvetica", 13, "bold")).pack(side=tk.LEFT, padx=6)
         
-        self.combo_samples = ttk.Combobox(selector_frame, state="readonly", width=60, font=("Helvetica", 10))
+        self.combo_samples = ttk.Combobox(selector_frame, state="readonly", width=62, font=("Helvetica", 12))
         self.combo_samples.pack(side=tk.LEFT, padx=10)
         self.combo_samples.bind("<<ComboboxSelected>>", self.on_sample_selected)
 
-        tk.Button(selector_frame, text="🔄 Actualizar", font=("Helvetica", 10, "bold"), command=self.load_db_records).pack(side=tk.LEFT, padx=5)
+        tk.Button(selector_frame, text="🔄 Actualizar", font=("Helvetica", 12, "bold"), command=self.load_db_records).pack(side=tk.LEFT, padx=6)
 
         metrics_frame = tk.LabelFrame(self.tab_stats, text=" Indicadores Estadísticos ", 
-                                      font=("Helvetica", 11, "bold"), padx=15, pady=10)
+                                      font=("Helvetica", 13, "bold"), padx=16, pady=14)
         metrics_frame.pack(padx=10, pady=5, fill=tk.X)
 
         metrics_frame.columnconfigure(0, weight=1)
         metrics_frame.columnconfigure(1, weight=1)
         metrics_frame.columnconfigure(2, weight=1)
 
-        self.lbl_stat_prom = tk.Label(metrics_frame, text="Promedio: -- ms", font=("Helvetica", 12, "bold"), fg="#1976D2")
-        self.lbl_stat_prom.grid(row=0, column=0, sticky="w", pady=4)
+        self.lbl_stat_prom = tk.Label(metrics_frame, text="Promedio: -- ms", font=("Helvetica", 14, "bold"), fg="#1976D2")
+        self.lbl_stat_prom.grid(row=0, column=0, sticky="w", pady=6)
 
-        self.lbl_stat_media = tk.Label(metrics_frame, text="Media: -- ms", font=("Helvetica", 12, "bold"), fg="#00796B")
-        self.lbl_stat_media.grid(row=0, column=1, sticky="w", pady=4)
+        self.lbl_stat_media = tk.Label(metrics_frame, text="Media: -- ms", font=("Helvetica", 14, "bold"), fg="#00796B")
+        self.lbl_stat_media.grid(row=0, column=1, sticky="w", pady=6)
 
-        self.lbl_stat_median = tk.Label(metrics_frame, text="Mediana: -- ms", font=("Helvetica", 12, "bold"), fg="#388E3C")
-        self.lbl_stat_median.grid(row=0, column=2, sticky="w", pady=4)
+        self.lbl_stat_median = tk.Label(metrics_frame, text="Mediana: -- ms", font=("Helvetica", 14, "bold"), fg="#388E3C")
+        self.lbl_stat_median.grid(row=0, column=2, sticky="w", pady=6)
 
-        self.lbl_stat_stdev = tk.Label(metrics_frame, text="Desviación Estándar: -- ms", font=("Helvetica", 12, "bold"), fg="#D32F2F")
-        self.lbl_stat_stdev.grid(row=1, column=0, sticky="w", pady=4)
+        self.lbl_stat_stdev = tk.Label(metrics_frame, text="Desviación Estándar: -- ms", font=("Helvetica", 14, "bold"), fg="#D32F2F")
+        self.lbl_stat_stdev.grid(row=1, column=0, sticky="w", pady=6)
 
-        self.lbl_stat_fatigue = tk.Label(metrics_frame, text="Índice de Fatiga / Acondicionamiento: --", font=("Helvetica", 12, "bold"), fg="#7B1FA2")
-        self.lbl_stat_fatigue.grid(row=1, column=1, columnspan=2, sticky="w", pady=4)
+        self.lbl_stat_fatigue = tk.Label(metrics_frame, text="Índice de Fatiga / Acondicionamiento: --", font=("Helvetica", 14, "bold"), fg="#7B1FA2")
+        self.lbl_stat_fatigue.grid(row=1, column=1, columnspan=2, sticky="w", pady=6)
 
         chart_frame = tk.LabelFrame(self.tab_stats, text=" Gráfico de Muestra con Línea de Tendencia ", 
-                                    font=("Helvetica", 11, "bold"), padx=5, pady=5)
+                                    font=("Helvetica", 13, "bold"), padx=6, pady=6)
         chart_frame.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
 
-        self.fig, self.ax = plt.subplots(figsize=(8, 4), dpi=100)
-        self.ax.set_title("Seleccione una muestra arriba para visualizar la gráfica", fontsize=12)
+        self.fig, self.ax = plt.subplots(figsize=(8.5, 4.2), dpi=100)
+        self.ax.set_title("Seleccione una muestra arriba para visualizar la gráfica", fontsize=14)
         self.ax.grid(True, linestyle=':', alpha=0.6)
 
         self.canvas = FigureCanvasTkAgg(self.fig, master=chart_frame)
@@ -246,7 +252,6 @@ class MonitorUARTApp:
                 label_text = f"ID #{record_id} | {nombre} | Modo: {color} | Promedio: {prom} ms | Fecha: {fecha}"
                 combo_values.append(label_text)
                 
-                # Filtrar valores válidos para estadísticas (excluir errores de 3000 ms si se desea o procesar limpios)
                 meds_parsed = []
                 for x in meds_str.split(","):
                     val = x.strip()
@@ -283,16 +288,16 @@ class MonitorUARTApp:
             self.lbl_stat_stdev.config(text="Desviación Estándar: N/A")
             self.lbl_stat_fatigue.config(text="Índice de Fatiga / Acondicionamiento: N/A", fg="gray")
             self.ax.clear()
-            self.ax.set_title(f"Sin datos gráficos para {nombre}", fontsize=12)
+            self.ax.set_title(f"Sin datos gráficos para {nombre}", fontsize=14)
             self.canvas.draw()
             return
 
-        # 1. Estadística Descriptiva Básica
+        # 1. Estadística Descriptiva
         mean_val = statistics.mean(meds)
         median_val = statistics.median(meds)
         stdev_val = statistics.stdev(meds) if len(meds) > 1 else 0.0
 
-        # 2. Cálculo del Índice de Fatiga / Acondicionamiento (IF)
+        # 2. Índice de Fatiga / Acondicionamiento (IF)
         if len(meds) >= 2:
             mid = len(meds) // 2
             first_half_mean = statistics.mean(meds[:mid])
@@ -320,27 +325,27 @@ class MonitorUARTApp:
         self.lbl_stat_stdev.config(text=f"Desviación Estándar: {stdev_val:.2f} ms")
         self.lbl_stat_fatigue.config(text=f"Índice de Fatiga / Acondicionamiento: {fatigue_str}", fg=fatigue_color)
 
-        # 4. Renderizar Gráfico y Ajuste Lineal
+        # 4. Renderizar Gráfico con Matplotlib
         self.ax.clear()
         x_indices = np.array(range(1, len(meds) + 1))
         y_values = np.array(meds)
         
-        self.ax.plot(x_indices, y_values, marker='o', linewidth=2.5, markersize=7, color='#1976D2', label='Tiempo de Reacción')
-        self.ax.axhline(y=mean_val, color='#D32F2F', linestyle='--', linewidth=1.8, label=f'Media ({mean_val:.1f} ms)')
+        self.ax.plot(x_indices, y_values, marker='o', linewidth=2.8, markersize=8, color='#1976D2', label='Tiempo de Reacción')
+        self.ax.axhline(y=mean_val, color='#D32F2F', linestyle='--', linewidth=2.2, label=f'Media ({mean_val:.1f} ms)')
 
         if len(meds) > 1:
             m, b = np.polyfit(x_indices, y_values, 1)
             trend_line = m * x_indices + b
-            self.ax.plot(x_indices, trend_line, linestyle=':', linewidth=2.2, color='#7B1FA2', 
+            self.ax.plot(x_indices, trend_line, linestyle=':', linewidth=2.6, color='#7B1FA2', 
                          label=f'Tendencia (m = {m:+.1f} ms/ensayo)')
 
-        self.ax.set_title(f"Evaluación de {nombre} (Modo: {color})", fontsize=13, fontweight='bold')
-        self.ax.set_xlabel("Número de Ensayo / Muestra Valida", fontsize=11, fontweight='bold')
-        self.ax.set_ylabel("Tiempo de Reacción (ms)", fontsize=11, fontweight='bold')
+        self.ax.set_title(f"Evaluación de {nombre} (Modo: {color})", fontsize=15, fontweight='bold')
+        self.ax.set_xlabel("Número de Ensayo / Muestra Válida", fontsize=13, fontweight='bold')
+        self.ax.set_ylabel("Tiempo de Reacción (ms)", fontsize=13, fontweight='bold')
         self.ax.set_xticks(x_indices)
-        self.ax.tick_params(axis='both', which='major', labelsize=10)
+        self.ax.tick_params(axis='both', which='major', labelsize=12)
         self.ax.grid(True, linestyle=':', alpha=0.6)
-        self.ax.legend(loc="upper right", fontsize=10)
+        self.ax.legend(loc="upper right", fontsize=12)
         
         self.fig.tight_layout()
         self.canvas.draw()
@@ -349,10 +354,10 @@ class MonitorUARTApp:
     def open_leaderboard(self):
         lead_win = tk.Toplevel(self.root)
         lead_win.title("🏆 Leaderboard - Mejores Promedios")
-        lead_win.geometry("650x450")
+        lead_win.geometry("750x520")
 
         lbl_title = tk.Label(lead_win, text="🥇 Clasificación General (Tiempos Más Rápidos)", 
-                             font=("Helvetica", 13, "bold"), pady=12)
+                             font=("Helvetica", 15, "bold"), pady=16)
         lbl_title.pack()
 
         columns = ("pos", "nombre", "color", "promedio", "fecha")
@@ -364,12 +369,12 @@ class MonitorUARTApp:
         tree_lead.heading("promedio", text="Promedio (ms)")
         tree_lead.heading("fecha", text="Fecha")
 
-        tree_lead.column("pos", width=80, anchor=tk.CENTER)
-        tree_lead.column("nombre", width=140)
-        tree_lead.column("color", width=90, anchor=tk.CENTER)
-        tree_lead.column("promedio", width=120, anchor=tk.CENTER)
-        tree_lead.column("fecha", width=150, anchor=tk.CENTER)
-        tree_lead.pack(padx=10, pady=5, fill=tk.BOTH, expand=True)
+        tree_lead.column("pos", width=95, anchor=tk.CENTER)
+        tree_lead.column("nombre", width=160)
+        tree_lead.column("color", width=110, anchor=tk.CENTER)
+        tree_lead.column("promedio", width=140, anchor=tk.CENTER)
+        tree_lead.column("fecha", width=170, anchor=tk.CENTER)
+        tree_lead.pack(padx=14, pady=8, fill=tk.BOTH, expand=True)
 
         with sqlite3.connect(DB_NAME) as conn:
             cursor = conn.cursor()
@@ -431,7 +436,6 @@ class MonitorUARTApp:
         nombre = self.entry_nombre.get().strip() or "Anónimo"
         color_nombre = COLOR_MAP.get(self.current_color_code, 'Desconocido')
         
-        # Calcular promedio de los tiempos válidos capturados
         if self.exam_measurements:
             promedio = round(sum(self.exam_measurements) / len(self.exam_measurements), 2)
         else:
@@ -490,7 +494,6 @@ class MonitorUARTApp:
     def process_line(self, linea):
         self.append_text(linea)
 
-        # Analizar todas las respuestas emitidas por el firmware (Modos 1 a 5)
         match_acierto = re.search(r"Tiempo de reacción:\s*(\d+)\s*ms", linea)
         match_error_red = re.search(r"¡ERROR!\s*Falsa alarma", linea)
         match_correct_red = re.search(r"¡CORRECTO!\s*Inhibición lograda", linea)
@@ -505,11 +508,9 @@ class MonitorUARTApp:
                 trial_event = True
             elif match_error_red:
                 self.exam_errors += 1
-                # Se registra una penalización de 3000 ms por falsa alarma ante el rojo
                 self.exam_measurements.append(3000)
                 trial_event = True
             elif match_correct_red:
-                # Inhibición correcta en rojo: Se completa el ensayo sin sumar tiempo de reacción
                 trial_event = True
             elif match_omision_green:
                 self.exam_errors += 1
